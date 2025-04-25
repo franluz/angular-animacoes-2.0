@@ -1,4 +1,7 @@
-import { animate, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate, group, keyframes, query, state, style,
+  transition, trigger
+} from '@angular/animations';
 
 export const highlightedStateTrigger = trigger('highlightedState', [
   state('default', style({
@@ -85,5 +88,24 @@ export const flyInOutTrigger = trigger('tarefaNotExistis', [
       animate('0.3s 0.2s ease', style({ opacity: 0 })),
     ])
   ])
+  ])
+])
+
+export const shakeTrigger = trigger('shakeAnimation', [
+  transition("*=>*", [
+    query('input.ng-invalid:focus,select.ng-invalid:focus', [
+      animate('0.5s', keyframes([
+        style({ border: '2px solid red' }),
+        style({ transform: 'translateX(0)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(0)' }),
+
+      ]))
+    ], { optional: true })
   ])
 ])
