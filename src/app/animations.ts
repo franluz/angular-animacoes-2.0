@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
 
 export const highlightedStateTrigger = trigger('highlightedState', [
   state('default', style({
@@ -47,11 +47,43 @@ export const filterTrigger = trigger('filterAnimation', [
     style({ opacity: 0, with: 0 }),
     animate('400ms ease-out', keyframes([
       style({ offset: 0, opacity: 0, with: 0 }),
-      style({ offset: 0.8, opacity: 0.5, with: '*', backGroundColor: 'lightgreen' }),
-      style({ offset: 1, opacity: 1, with: '*', backGroundColor: 'lightblue' })
+      style({ offset: 0.8, opacity: 0.5, with: '*' }),
+      style({ offset: 1, opacity: 1, with: '*' })
     ]))
   ]),
   transition(':leave', [
-    animate('400ms ease-out', style({ opacity: 0, with: 0}))
+    animate('400ms cubic-bezier(.43,.52,.83,.67)', style({ opacity: 0, with: 0 }))
+  ])
+])
+
+export const formButtonTrigger = trigger('formButton', [
+  transition('invalid => valid', [
+    query('#botao-salvar', [
+      group([animate(200, style({ backGroundColor: '#63b77C' })),
+      animate(100, style({ transform: 'scale(1.1)' })),]),
+      animate(200, style({ transform: 'scale(1)' }))
+    ]),
+  ]),
+  transition('valid => invalid', [
+    query('#botao-salvar', [
+      group([animate(200, style({ backGroundColor: '#6C757D' })),
+      animate(100, style({ transform: 'scale(1.1)' })),]),
+      animate(200, style({ transform: 'scale(1)' }))
+    ]),
+
+  ])
+])
+export const flyInOutTrigger = trigger('tarefaNotExistis', [
+  transition(':enter', [style({ with: '100%', transform: 'translateX(-100%)', opacity: 0 }),
+  group([
+    animate('0.3s 01.s ease', style({ transform: 'translateX(0)', width: '*' })),
+    animate('0.3s ease', style({ opacity: 1 })),
+  ]),
+  transition(':leave', [
+    group([
+      animate('0.3s ease', style({ trasform: 'translateX(100%)', with: '*' })),
+      animate('0.3s 0.2s ease', style({ opacity: 0 })),
+    ])
+  ])
   ])
 ])
