@@ -6,7 +6,7 @@ import { Tarefa } from '../interface/tarefa';
 import {
   checkButtonTrigger, filterTrigger,
   flyInOutTrigger, formButtonTrigger,
-  highlightedStateTrigger, shakeTrigger,
+  highlightedStateTrigger, listStateTrigger, shakeTrigger,
   shownStateTrigger
 } from '../animations';
 import { Subscription } from 'rxjs';
@@ -22,7 +22,8 @@ import { Subscription } from 'rxjs';
     filterTrigger,
     formButtonTrigger,
     flyInOutTrigger,
-    shakeTrigger
+    shakeTrigger,
+    listStateTrigger
   ]
 })
 export class ListaTarefasComponent implements OnInit {

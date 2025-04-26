@@ -71,7 +71,7 @@
     <img src="assets/imagens/ilustracao-Tarefas.png"
         alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta">
   </div>
-  <div *ngIf="tarefasFiltradas.length > 0, else semTarefas">
+  <div *ngIf="tarefasFiltradas.length > 0, else semTarefas" @listState>
     <div class="busca">
       <p class="ff-propmpt">Procurando o que fazer?</p>
       <input type="search" id="campo-busca"
